@@ -1,0 +1,147 @@
+#floating-window,
+#floating-window * {
+  all: revert;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased; /* Optional: for smoother fonts */
+  -moz-osx-font-smoothing: grayscale; /* Optional: for smoother fonts */
+}
+
+/* --- Base styles for the floating window --- */
+#floating-window {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  width: 360px; /* Increased width slightly for new buttons */
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  border: 1px solid #e5e7eb;
+}
+
+#floating-window #window-header {
+  cursor: move;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 0.75rem;
+  border-radius: 1rem;
+}
+
+#floating-window #window-header div h2 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#floating-window #window-header div h6 {
+  font-weight: 700;
+  font-size: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#floating-window #window-header button {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  width: fit-content;
+}
+
+#floating-window #window-header button:hover {
+  color: #ffffff;
+}
+
+#floating-window .p-4 {
+  padding: 1rem;
+}
+#floating-window .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+#floating-window .flex {
+  display: flex;
+}
+#floating-window .items-center {
+  align-items: center;
+}
+/* New class for adjusted spacing */
+#floating-window .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.5rem;
+}
+
+/* --- Button and Status Styles --- */
+#floating-window button {
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  width: 100%;
+}
+
+#floating-window button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+#floating-window #copy-table-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+#floating-window #copy-table-btn:hover {
+  background-color: #2563eb;
+}
+
+#floating-window #placeholder-btn {
+  background-color: #22c55e;
+  color: white;
+}
+#floating-window #placeholder-btn:hover {
+  background-color: #16a34a;
+}
+
+/* New Styles for Header Buttons */
+#floating-window #copy-table-header-btn,
+#floating-window #placeholder-header-btn {
+  background-color: #8b5cf6; /* Purple */
+  color: white;
+}
+#floating-window #copy-table-header-btn:hover,
+#floating-window #placeholder-header-btn:hover {
+  background-color: #7c3aed;
+}
+
+#floating-window .status-box {
+  transition: all 0.3s ease-in-out;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+#floating-window .status-box.bg-green-100 {
+  background-color: #d1fae5;
+}
+#floating-window .status-box.text-green-800 {
+  color: #065f46;
+}
+#floating-window .status-box.bg-red-100 {
+  background-color: #fee2e2;
+}
+#floating-window .status-box.text-red-800 {
+  color: #991b1b;
+}
