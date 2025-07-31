@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "UPA Copier",
-  "version": "1.05",
+  "version": "1.03",
   "description": "Copies PO table and Cart Table",
   "icons": {
     "16": "icons/16.png",
