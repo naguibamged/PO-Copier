@@ -54,6 +54,29 @@ function updateStatus(statusBoxId, message, type) {
   }
 }
 
+// One Excel cell: button labels and nested markup included once, with no
+// line breaks that would split a pasted row.
+function cellText(cell) {
+  const raw = cell.innerText != null ? cell.innerText : cell.textContent || "";
+  return raw.replace(/\s+/g, " ").trim();
+}
+
+// Direct children only. A Kendo cell rendered as <td><td>value</td></td>
+// must count once; querySelectorAll("td") would also return the inner cell.
+function directRowCells(row) {
+  return row.querySelectorAll(":scope > th, :scope > td");
+}
+
+function rowToColumns(row, excludedCols) {
+  const values = [];
+  directRowCells(row).forEach((cell, index) => {
+    if (cell.classList.contains("k-hierarchy-cell")) return;
+    if (excludedCols.includes(index)) return;
+    values.push(cellText(cell));
+  });
+  return values;
+}
+
 /**
  * A reusable function to process and copy table data.
  * @param {boolean} includeHeader - Whether to include the header table.
@@ -90,24 +113,17 @@ function copyTableData(
       return;
     }
     const headerTable = headerTables[tableIndex];
-    let headerData = [];
-    headerTable.querySelectorAll("th").forEach((cell, index) => {
-      if (!excludedHeaderCols.includes(index)) {
-        headerData.push(cell.innerText.trim());
-      }
-    });
+    const headerRow =
+      headerTable.querySelector("thead > tr") || headerTable.querySelector("tr");
+    const headerData = headerRow
+      ? rowToColumns(headerRow, excludedHeaderCols)
+      : [];
     headerText = headerData.join("\t");
   }
 
   let bodyTextRows = [];
-  bodyTable.querySelectorAll("tbody tr").forEach((row) => {
-    let rowData = [];
-    row.querySelectorAll("th, td").forEach((cell, index) => {
-      if (!excludedBodyCols.includes(index)) {
-        rowData.push(cell.innerText.trim());
-      }
-    });
-    bodyTextRows.push(rowData.join("\t"));
+  bodyTable.querySelectorAll("tbody tr.k-master-row").forEach((row) => {
+    bodyTextRows.push(rowToColumns(row, excludedBodyCols).join("\t"));
   });
 
   const fullText = includeHeader
@@ -129,18 +145,16 @@ function copyTableData(
 
 // --- Button Listeners ---
 
-// Button 1: Copy first table (no header)
+// Button 1: Copy first table (no header). Same columns as the header row.
 document.getElementById("copy-table-btn").addEventListener("click", () => {
-  // Exclude columns 3 and 5 from the BODY only.
-  copyTableData(false, 0, [], [2, 4], "status-box-1");
+  copyTableData(false, 0, [], [], "status-box-1");
 });
 
-// Button 2: Copy first table (with header) - ⬇️ THIS IS THE MODIFIED LOGIC ⬇️
+// Button 2: Copy first table (with header).
 document
   .getElementById("copy-table-header-btn")
   .addEventListener("click", () => {
-    // Exclude NO columns from the HEADER, but exclude columns 3 and 5 from the BODY.
-    copyTableData(true, 0, [], [2, 4], "status-box-1");
+    copyTableData(true, 0, [], [], "status-box-1");
   });
 
 // Button 3: Copy second table (no header)
