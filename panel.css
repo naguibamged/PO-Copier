@@ -113,24 +113,13 @@
 
 /* New Styles for Header Buttons */
 #floating-window #copy-table-header-btn,
-#floating-window #placeholder-header-btn,
-#floating-window #copy-full-order-header-btn {
+#floating-window #placeholder-header-btn {
   background-color: #8b5cf6; /* Purple */
   color: white;
 }
 #floating-window #copy-table-header-btn:hover,
-#floating-window #placeholder-header-btn:hover,
-#floating-window #copy-full-order-header-btn:hover {
+#floating-window #placeholder-header-btn:hover {
   background-color: #7c3aed;
-}
-#floating-window #copy-full-order-header-btn {
-  width: auto;
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-#floating-window #copy-full-order-header-btn:disabled {
-  opacity: 0.6;
-  cursor: default;
 }
 
 #floating-window #full-order-input {

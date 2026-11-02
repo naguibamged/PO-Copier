@@ -839,11 +839,9 @@ async function copyFullOrder(includeHeader) {
   }
 
   const button = document.getElementById("copy-full-order-btn");
-  const headerButton = document.getElementById("copy-full-order-header-btn");
   fullOrderRunning = true;
   fullOrderStop = false;
   button.disabled = true;
-  if (headerButton) headerButton.disabled = true;
   setRunControls(true);
   const blocks = [];
   const missing = [];
@@ -943,19 +941,12 @@ async function copyFullOrder(includeHeader) {
     fullOrderStop = false;
     setRunControls(false);
     if (button) button.disabled = false;
-    if (headerButton) headerButton.disabled = false;
   }
 }
 
 document.getElementById("copy-full-order-btn").addEventListener("click", () => {
-  copyFullOrder(false);
+  copyFullOrder(true);
 });
-
-document
-  .getElementById("copy-full-order-header-btn")
-  .addEventListener("click", () => {
-    copyFullOrder(true);
-  });
 
 document.getElementById("pause-full-order-btn").addEventListener("click", () => {
   if (!fullOrderRunning) return;
