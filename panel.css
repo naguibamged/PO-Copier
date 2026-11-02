@@ -12,7 +12,7 @@
   position: fixed;
   top: 50px;
   right: 50px;
-  width: 360px; /* Increased width slightly for new buttons */
+  width: 520px;
   background-color: white;
   border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -113,13 +113,84 @@
 
 /* New Styles for Header Buttons */
 #floating-window #copy-table-header-btn,
-#floating-window #placeholder-header-btn {
+#floating-window #placeholder-header-btn,
+#floating-window #copy-full-order-header-btn {
   background-color: #8b5cf6; /* Purple */
   color: white;
 }
 #floating-window #copy-table-header-btn:hover,
-#floating-window #placeholder-header-btn:hover {
+#floating-window #placeholder-header-btn:hover,
+#floating-window #copy-full-order-header-btn:hover {
   background-color: #7c3aed;
+}
+#floating-window #copy-full-order-header-btn {
+  width: auto;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+#floating-window #copy-full-order-header-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+#floating-window #full-order-input {
+  display: block;
+  width: 100%;
+  min-height: 4.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  resize: vertical;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+#floating-window #copy-full-order-btn {
+  background-color: #f59e0b;
+  color: white;
+  width: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.8rem;
+  line-height: 1.25;
+}
+#floating-window #copy-full-order-btn:hover {
+  background-color: #d97706;
+}
+#floating-window #copy-full-order-btn:disabled {
+  background-color: #fcd34d;
+  cursor: default;
+}
+
+#floating-window .full-order-controls {
+  margin-top: 0.5rem;
+}
+#floating-window #pause-full-order-btn,
+#floating-window #stop-full-order-btn {
+  width: auto;
+  flex: 1 1 auto;
+}
+#floating-window #pause-full-order-btn {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+#floating-window #pause-full-order-btn:hover:not(:disabled) {
+  background-color: #d1d5db;
+}
+#floating-window #stop-full-order-btn {
+  background-color: #ef4444;
+  color: white;
+}
+#floating-window #stop-full-order-btn:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+#floating-window #pause-full-order-btn:disabled,
+#floating-window #stop-full-order-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 #floating-window .status-box {
@@ -129,6 +200,7 @@
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   white-space: nowrap;
+  flex-shrink: 0;
   background-color: #e5e7eb;
   color: #374151;
 }
